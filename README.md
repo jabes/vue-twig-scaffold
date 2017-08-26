@@ -7,17 +7,28 @@ This is a simple scaffold example built with Vue.js and the Twig template engine
 - PHP 7.1
 - Node 8.4
 
-### Install Instructions
+### Install
 
 ```bash
 composer install
 npm install
+```
+
+### Build Tools
+
+```bash
 npm run gulp build
-npm run gulp favicon
+npm run gulp watch
 ```
 
 ### Start Server
 
 ```bash
-php -S localhost:8000
+npm start
+```
+
+### Testing
+
+```bash
+npm test
 ```

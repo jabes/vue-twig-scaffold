@@ -37,9 +37,13 @@
     "gulp-uglify": "3.0.0",
     "gulp-util": "3.0.8",
     "gulp-watch": "4.3.11",
+    "mocha": "3.5.0",
     "run-sequence": "2.1.0"
   },
   "scripts": {
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "postinstall": "gulp build && gulp favicon",
+    "start": "php -S localhost:8000",
+    "test": "mocha"
   }
 }
