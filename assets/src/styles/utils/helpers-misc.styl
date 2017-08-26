@@ -1,0 +1,65 @@
+$outline = none initial
+for $value in $outline
+  .outline-{$value}
+    outline $value
+
+$cursor = {
+    'auto': auto,
+    'none': none,
+    'default': default,
+    'text': text,
+    'pointer': pointer,
+    'move': move,
+    'grab': grab,
+    'grabbing': grabbing,
+}
+
+for $key, $value in $cursor
+  .cursor-{$key}
+    cursor $value
+  .cursor-hover-{$key}:hover
+    cursor $value
+
+$pointer-events = auto none
+for $value in $pointer-events
+  .pointer-events-{$value}
+    pointer-events $value
+
+$resize = none both horizontal vertical
+for $value in $resize
+  .resize-{$value}
+    resize $value
+
+$object-fit = fill contain cover none scale-down
+for $value in $object-fit
+  .object-fit-{$value}
+    object-fit $value
+
+$pie-size = 8
+for $i in 0..$pie-size
+  $key = $i * (360 / $pie-size)
+  $value = convert-unit($key, 'deg')
+  .rotate-{$key}
+    transform rotate($value)
+
+for $i in 0..10
+  $key = ($i * 100)
+  $duration = convert-unit($key, 'ms')
+  .transition-{$key}
+    transition-property all
+    transition-duration $duration
+    transition-timing-function ease-out
+  $selector = 'delay-%s' % $key
+  .{$selector}
+    transition-delay $duration
+
+$column-count = 1 2 3 4 5
+for $i in $column-count
+  .column-count-{$i}
+    column-count $i
+
+$column-gap = normal 1em 2em 3em 4em 5em
+for $value in $column-gap
+  $key = remove-unit($value)
+  .column-gap-{$key}
+    column-gap $value

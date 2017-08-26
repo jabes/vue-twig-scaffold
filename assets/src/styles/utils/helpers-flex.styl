@@ -1,0 +1,63 @@
+$flex = auto none
+for $value in $flex
+  .flex-{$value}
+    flex $value
+
+$flex-wrap = nowrap wrap wrap-reverse
+for $value in $flex-wrap
+  .flex-{$value}
+    flex-wrap $value
+
+$flex-direction = row row-reverse column column-reverse
+for $value in $flex-direction
+  .flex-{$value}
+    flex-direction $value
+
+$flex-content = {
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'between': space-between,
+  'around': space-around,
+  'stretch': stretch,
+}
+
+for $key, $value in $flex-content
+  .content-{$key}
+    align-content $value
+
+$flex-items = {
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'baseline': baseline,
+  'stretch': stretch,
+}
+
+for $key, $value in $flex-items
+  .items-{$key}
+    align-items $value
+
+$flex-self = {
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'baseline': baseline,
+  'stretch': stretch,
+}
+
+for $key, $value in $flex-self
+  .self-{$key}
+    align-self $value
+
+$flex-justify = {
+  'start': flex-start,
+  'end': flex-end,
+  'center': center,
+  'between': space-between,
+  'around': space-around,
+}
+
+for $key, $value in $flex-justify
+  .justify-{$key}
+    justify-content $value

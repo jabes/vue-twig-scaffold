@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>{{ site.name }}</title>
+
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% block favicons %}
+    {% include 'parts/favicons.twig' %}
+  {% endblock %}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <link rel="stylesheet" href="{{ asset('css/app.min.css') }}"/>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"></script>
+  <script src="{{ asset('js/app.min.js') }}"></script>
+  <script src="http://localhost:35729/livereload.js"></script>
+
+</head>
+<body>
+
+<div id="app"
+     class="relative width-100 min-height-100"
+     role="application">
+
+  {% block header %}
+    {% include 'parts/header.twig' %}
+  {% endblock %}
+
+  <main role="main">
+
+    {% block content %}
+      {% include 'parts/content.twig' %}
+    {% endblock %}
+
+    {% block footer %}
+      {% include 'parts/footer.twig' %}
+    {% endblock %}
+
+  </main>
+</div>
+
+</body>
+</html>

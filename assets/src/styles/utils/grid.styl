@@ -1,0 +1,75 @@
+.container
+  min-width $media-size-xs
+  max-width $media-size-xl
+  margin auto
+  padding-left $grid-gutter-small
+  padding-right $grid-gutter-small
+  +media-md()
+    padding-left $grid-gutter
+    padding-right $grid-gutter
+
+.row
+  display flex
+  flex-wrap wrap
+  flex-direction row
+  margin-left ($grid-gutter-small / 2) * -1
+  margin-right ($grid-gutter-small / 2) * -1
+  +media-md()
+    margin-left ($grid-gutter / 2) * -1
+    margin-right ($grid-gutter / 2) * -1
+  &.reverse
+    flex-direction row-reverse
+
+[class^="col-"],
+[class*=" col-"]
+  padding-left ($grid-gutter-small / 2)
+  padding-right ($grid-gutter-small / 2)
+  +media-md()
+    padding-left ($grid-gutter / 2)
+    padding-right ($grid-gutter / 2)
+
+col($media-size = null)
+  $col-shared-selector = ($media-size != null) ? '.col-%s' % $media-size:'.col'
+  {$col-shared-selector}
+    flex none
+    position relative
+    // Prevent columns from becoming too narrow when at smaller grid tiers by always setting 100% width.
+    // This works because we use flex values later on to override this initial width.
+    width 100%
+    min-height 1px
+  $first-selector = ($media-size != null) ? '.first-%s' % $media-size:'.first'
+  {$first-selector}
+    order -1
+  $last-selector = ($media-size != null) ? '.last-%s' % $media-size:'.last'
+  {$last-selector}
+    order 1
+  // Prevent collapsing
+  for $i in (1..$grid-columns)
+    $col-size-selector = ($media-size != null) ? '.col-%s-%s' % ($media-size $i):'.col-%s' % $i
+    {$col-size-selector}
+      @extend {$col-shared-selector}
+    {$col-size-selector}
+      flex-basis percentage($i / $grid-columns)
+      // Add max width to ensure content within each column does not blow out the width of the column.
+      // Applies to IE10+ and Firefox.
+      // Chrome and Safari do not appear to require this.
+      max-width percentage($i / $grid-columns)
+  for $i in (1..$grid-columns)
+    $col-hidden-selector = '.col-%s-offset-%s' % ($media-size $i)
+    {$col-hidden-selector}
+    margin-left percentage($i / $grid-columns)
+
++media-xs()
+  col(xs)
+
++media-sm()
+  col(sm)
+
++media-md()
+  col(md)
+
++media-lg()
+  col(lg)
+
++media-xl()
+  col(xl)

@@ -1,0 +1,59 @@
+$font-size = {
+  'inherit': inherit,
+  '0': 0,
+  '10': rem-calc(10px),
+  '12': rem-calc(12px),
+  '14': rem-calc(14px),
+  '16': rem-calc(16px),
+  '18': rem-calc(18px),
+  '20': rem-calc(20px),
+  '22': rem-calc(22px),
+  '24': rem-calc(24px),
+  '26': rem-calc(26px),
+  '28': rem-calc(28px),
+  '30': rem-calc(30px),
+  '32': rem-calc(32px),
+  '34': rem-calc(34px),
+  '36': rem-calc(36px),
+  '38': rem-calc(38px),
+}
+
+for $key, $value in $font-size
+  $selector = 'font-size-%s' % s($key)
+  .{$selector}
+    font-size $value
+
+$font-family = {
+  'serif': 'serif',
+  'sans-serif': 'sans-serif',
+  'cursive': 'cursive',
+  'monospace': 'monospace',
+  'roboto': $font-family-roboto,
+  'roboto-bold': $font-family-roboto-bold,
+  'roboto-light': $font-family-roboto-light,
+}
+
+for $key, $value in $font-family
+  .font-family-{$key}
+    font-family $value
+
+$font-weight = {
+  'thin': 100,
+  'extra-light': 200,
+  'light': 300,
+  'normal': 400,
+  'medium': 500,
+  'semi-bold': 600,
+  'bold': 700,
+  'extra-bold': 800,
+  'black': 900,
+}
+
+for $key, $value in $font-weight
+  .font-weight-{$key}
+    font-weight $value
+
+$font-style = normal italic oblique
+for $value in $font-style
+  .font-style-{$value}
+    font-style $value

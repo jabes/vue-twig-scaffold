@@ -1,0 +1,35 @@
+for $i in 0..10
+  $size = $i * 10
+  .index-{$size}
+    z-index $size
+
+$position = static absolute fixed relative
+for $value in $position
+  .{$value}
+    position $value
+
+for $i in 0..10
+  $key = $i
+  $value = $i * 10
+  if $value is not 0
+    $value = convert-unit($value, '%')
+  .top-{$key}
+    top $value
+  .bottom-{$key}
+    bottom $value
+  .left-{$key}
+    left $value
+  .right-{$key}
+    right $value
+
+//for $i in 0..10
+//  $key = $i
+//  $value = convert-unit($i * 10, '%')
+//  .translate-top-{$key}
+//    transform translateY($value)
+//  .translate-bottom-{$key}
+//    transform translateY($value * -1)
+//  .translate-left-{$key}
+//    transform translateX($value)
+//  .translate-right-{$key}
+//    transform translateX($value * -1)

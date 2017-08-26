@@ -1,0 +1,37 @@
+@import "utils/functions"
+
+$grid-columns = 12
+$grid-gutter = 2em
+$grid-gutter-small = 1em
+
+$media-size-xs = em-calc(320px) // phone
+$media-size-sm = em-calc(425px) // phablet
+$media-size-md = em-calc(768px) // tablet
+$media-size-lg = em-calc(1024px) // desktop
+$media-size-xl = em-calc(1440px) // wide screen
+
+$media-size-xs-min = 0
+$media-size-sm-min = $media-size-xs + em-calc(1px)
+$media-size-md-min = $media-size-sm + em-calc(1px)
+$media-size-lg-min = $media-size-md + em-calc(1px)
+$media-size-xl-min = $media-size-lg + em-calc(1px)
+
+$color-grey-darker = #222
+$color-grey-dark = #444
+$color-grey = #666
+$color-grey-light = #999
+$color-grey-lighter = #DDD
+$color-black = #000
+$color-white = #FFF
+
+$font-family-roboto = "Roboto", sans-serif
+$font-family-roboto-bold = "Roboto-Bold", sans-serif
+$font-family-roboto-light = "Roboto-Light", sans-serif
+
+$height-header = 80px
+
+@import "utils/mixins"
+@import "utils/helpers"
+@import "utils/grid"
+@import "app/fonts"
+@import "app/common"

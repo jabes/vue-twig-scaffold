@@ -1,0 +1,45 @@
+{
+  "name": "control-demo",
+  "description": "This is a description.",
+  "author": {
+    "name": "Justin Bull",
+    "email": "bull.justin@gmail.com",
+    "url": "http://jbull.ca/"
+  },
+  "private": true,
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/invoke/polygon"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "del": "3.0.0",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "4.0.0",
+    "gulp-babel": "7.0.0",
+    "gulp-cli": "1.4.0",
+    "gulp-concat": "2.6.1",
+    "gulp-cssnano": "2.1.2",
+    "gulp-eslint": "4.0.0",
+    "gulp-favicons": "2.2.7",
+    "gulp-group-css-media-queries": "1.2.0",
+    "gulp-imagemin": "3.3.0",
+    "gulp-livereload": "3.8.1",
+    "gulp-load-plugins": "1.5.0",
+    "gulp-newer": "1.3.0",
+    "gulp-plumber": "1.1.0",
+    "gulp-rename": "1.2.2",
+    "gulp-sourcemaps": "2.6.1",
+    "gulp-stylus": "2.6.0",
+    "gulp-uglify": "3.0.0",
+    "gulp-util": "3.0.8",
+    "gulp-watch": "4.3.11",
+    "run-sequence": "2.1.0"
+  },
+  "scripts": {
+    "gulp": "gulp"
+  }
+}

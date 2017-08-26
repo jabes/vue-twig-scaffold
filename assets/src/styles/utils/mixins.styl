@@ -1,0 +1,171 @@
+/*
+ * Calculates column widths and margins based on percentages
+ * [33.33%][33.33%][33.33%]
+ * [32%] 2% [32%] 2% [32%]
+ * [calc(33.33%-6.66px)] 10px [calc(33.33%-6.66px)] 10px [calc(33.33%-6.66px)]
+ */
+box-column($total = 3, $margin = 0)
+  $row-width = 100%
+  $column-width = $row-width / $total
+  $column-margin = $margin * ($total - 1) / $total
+  if $total == 1
+    width $row-width
+  else if unit($margin) == "%"
+    width $column-width - $column-margin
+  else if $margin > 0
+    width "calc(%s - %s)" % ($column-width $column-margin)
+  else
+    width $column-width
+  if $total > 1 and $margin > 0
+    &:not(:last-child):not(:nth-of-type({$total}n))
+      margin-right $margin
+
+/*
+ * Creates evenly spaced points from 0% to 100%
+ * usage: +percentage-points(5)
+ * .-----.-----.-----.-----.
+ * ^     ^     ^     ^     ^
+ * 0%    25%   50%   75%   100%
+ */
+percentage-points($total)
+  for $i in (1..$total)
+    &:nth-child({$i})
+      left 100% - percentage(($total + 1 - $i - ($i - 1) / ($total - 1)) / $total);
+
+/*
+ * Keeps the defined aspect ratio of an element relative to its width
+ * @see http://stackoverflow.com/questions/12121090/responsively-change-div-size-keeping-aspect-ratio
+ */
+aspect-ratio($ratio-width = 16, $ratio-height = 9)
+  &::after
+    content ""
+    display block
+    padding-top percentage($ratio-height / $ratio-width)
+
+/*
+ * Calculates new dimensions given the original dimensions of an object and the desired height
+ * @see http://andrew.hedges.name/experiments/aspect_ratio/
+ */
+aspect-width($original-width, $original-height, $new-height, $precision = 2)
+  $new-width = calc-aspect-width($original-width, $original-height, $new-height)
+  width to-fixed($new-width, $precision)
+  height to-fixed($new-height, $precision)
+
+/*
+ * Calculates new dimensions given the original dimensions of an object and the desired width
+ * @see http://andrew.hedges.name/experiments/aspect_ratio/
+ */
+aspect-height($original-width, $original-height, $new-width, $precision = 2)
+  $new-height = calc-aspect-height($original-width, $original-height, $new-width)
+  width to-fixed($new-width, $precision)
+  height to-fixed($new-height, $precision)
+
+clear-fix()
+  &::after
+    content ""
+    display table
+    clear both
+
+media-xs-below()
+  media = 'screen and (max-width: %s)' % $media-size-xs
+  @media media
+    {block}
+
+media-sm-below()
+  media = 'screen and (max-width: %s)' % $media-size-sm
+  @media media
+    {block}
+
+media-md-below()
+  media = 'screen and (max-width: %s)' % $media-size-md
+  @media media
+    {block}
+
+media-lg-below()
+  media = 'screen and (max-width: %s)' % $media-size-lg
+  @media media
+    {block}
+
+media-xl-below()
+  media = 'screen and (max-width: %s)' % $media-size-xl
+  @media media
+    {block}
+
+$media-size-xs-min-query = 'screen and (min-width: %s)' % $media-size-xs-min
+$media-size-sm-min-query = 'screen and (min-width: %s)' % $media-size-sm-min
+$media-size-md-min-query = 'screen and (min-width: %s)' % $media-size-md-min
+$media-size-lg-min-query = 'screen and (min-width: %s)' % $media-size-lg-min
+$media-size-xl-min-query = 'screen and (min-width: %s)' % $media-size-xl-min
+
+media-xs()
+  @media $media-size-xs-min-query
+    {block}
+
+media-sm()
+  @media $media-size-sm-min-query
+    {block}
+
+media-md()
+  @media $media-size-md-min-query
+    {block}
+
+media-lg()
+  @media $media-size-lg-min-query
+    {block}
+
+media-xl()
+  @media $media-size-xl-min-query
+    {block}
+
+media-portrait()
+  media = 'screen and (orientation: portrait)'
+  @media media
+    {block}
+
+media-landscape()
+  media = 'screen and (orientation: landscape)'
+  @media media
+    {block}
+
+media-variants($selector)
+  +media-xs()
+    $selector-xs = '%s-xs' % s($selector)
+    .{$selector-xs}
+      {block}
+  +media-sm()
+    $selector-sm = '%s-sm' % s($selector)
+    .{$selector-sm}
+      {block}
+  +media-md()
+    $selector-md = '%s-md' % s($selector)
+    .{$selector-md}
+      {block}
+  +media-lg()
+    $selector-lg = '%s-lg' % s($selector)
+    .{$selector-lg}
+      {block}
+  +media-xl()
+    $selector-xl = '%s-xl' % s($selector)
+    .{$selector-xl}
+      {block}
+  +media-portrait()
+    $selector-portrait = '%s-portrait' % s($selector)
+    .{$selector-portrait}
+      {block}
+  +media-landscape()
+    $selector-landscape = '%s-landscape' % s($selector)
+    .{$selector-landscape}
+      {block}
+
+font-face($family, $file, $weight = normal, $style = normal)
+  $folder = $file + '/'
+  @font-face
+    font-family $family
+    src font-url($folder + $file + '.eot')
+    src font-url($folder + $file + '.woff2') format('woff2'),
+        font-url($folder + $file + '.woff') format('woff'),
+        font-url($folder + $file + '.ttf') format('truetype'),
+        font-url($folder + $file + '.svg#' + $family) format('svg'),
+        font-url($folder + $file + '.eot?#iefix') format('embedded-opentype')
+    font-weight $weight
+    font-style $style

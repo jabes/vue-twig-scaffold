@@ -1,0 +1,68 @@
+$visibility = visible hidden
+for $value in $visibility
+  .{$value}
+    visibility $value
+  +media-variants($value)
+    visibility $value
+
+for $i in 0..10
+  $value = ($i * 10)
+  .opacity-{$value}
+    opacity ($value / 100)
+  .opacity-hover-{$value}:hover
+    opacity ($value / 100)
+
+$overflow = visible hidden scroll auto
+for $value in $overflow
+  .overflow-{$value}
+    overflow $value
+  .overflow-x-{$value}
+    overflow-x $value
+  .overflow-y-{$value}
+    overflow-y $value
+
+.overflow-scrolling-touch
+  -webkit-overflow-scrolling touch
+
+.hide-scrollbar
+  &::-webkit-scrollbar
+    display none
+
+.hide
+  display none
+
++media-sm()
+  .hide-xs
+    display none
+
++media-md()
+  .hide-sm
+    display none
+
++media-lg()
+  .hide-md
+    display none
+
++media-xl()
+  .hide-lg
+    display none
+
++media-xs-below()
+  .show-xs
+    display none
+
++media-sm-below()
+  .show-sm
+    display none
+
++media-md-below()
+  .show-md
+    display none
+
++media-lg-below()
+  .show-lg
+    display none
+
++media-xl-below()
+  .show-xl
+    display none

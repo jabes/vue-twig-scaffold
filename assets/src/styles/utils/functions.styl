@@ -1,0 +1,100 @@
+// This is the default html and body font-size for the base rem value
+$rem-base = 16px
+
+// Convert a single pixel value to rem
+convert-to-rem($value, $base-value = $rem-base)
+  $value = remove-unit($value) / remove-unit($base-value) * 1rem
+  if $value == 0rem
+    $value = 0
+  return $value
+
+// Convert pixels to rems
+rem-calc($values, $base-value = $rem-base)
+  $length = length($values)
+  if $length == 1
+    $value = $values
+    $remValue = convert-to-rem($value, $base-value)
+    return $remValue
+  $remValues = ()
+  for $i in (1..$length)
+    $value = $values[$i]
+    $remValue = convert-to-rem($value, $base-value)
+    push($remValues, $remValue)
+  return $remValues
+
+// Convert pixels to ems
+em-calc($values)
+  $remValues = rem-calc($values)
+  $length = length($remValues)
+  if $length == 1
+    $remValue = $remValues
+    $emValue = remove-unit($remValue) * 1em
+    return $emValue
+  $emValues = ()
+  for $i in (1..$length)
+    $remValue = $remValues[$i]
+    $emValue = remove-unit($remValue) * 1em
+    push($emValues, $emValue)
+  return $emValues
+
+// Convert one unit into another
+convert-unit($value, $unit)
+  $units = {
+        "%": 0%,
+        "px": 0px,
+        "em": 0em,
+        "rem": 0rem,
+        "vw": 0vw,
+        "vh": 0vh,
+        "vmin": 0vmin,
+        "vmax": 0vmax,
+        "deg": 0deg,
+        "grad": 0grad,
+        "rad": 0rad,
+        "turn": 0turn,
+        "s": 0s,
+        "ms": 0ms,
+        "in": 0in,
+        "cm": 0cm,
+        "mm": 0mm,
+        "pt": 0pt,
+        "pc": 0pc,
+        "dpi": 0dpi,
+        "dpcm": 0dpcm,
+        "dppx": 0dppx
+    }
+  return remove-unit($value) + $units[$unit]
+
+// Power function
+pow($x, $n)
+  $ret = 1
+  if $n >= 0
+    for $i in (1..$n)
+      $ret = $ret * $x
+  else
+    for $i in ($n..0)
+      $ret = $ret / $x
+  return $ret
+
+// Format number to a fixed number of demial points
+to-fixed($float, $digits = 2)
+  $pow = pow(10, $digits)
+  return round($float * $pow) / $pow
+
+// Calculates width given the original dimensions of an object and the desired height
+calc-aspect-width($original-width, $original-height, $new-height)
+  $unit = unit($new-height)
+  $new-width = remove-unit($original-width) / remove-unit($original-height) * remove-unit($new-height)
+  return convert-unit($new-width, $unit)
+
+// Calculates height given the original dimensions of an object and the desired width
+calc-aspect-height($original-width, $original-height, $new-width)
+  $unit = unit($new-width)
+  $new-height = remove-unit($original-height) / remove-unit($original-width) * remove-unit($new-width)
+  return convert-unit($new-height, $unit)
+
+image-url($filename)
+  return url(../img/$filename)
+
+font-url($filename)
+  return url(../font/$filename)

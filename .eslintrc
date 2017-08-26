@@ -1,0 +1,14 @@
+{
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "globals": {
+    "Vue": true
+  },
+  "rules": {
+    "no-console": "off",
+    "no-debugger": "off"
+  }
+}

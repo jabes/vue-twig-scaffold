@@ -1,0 +1,79 @@
+$colors = {
+  'inherit': inherit,
+  'transparent': transparent,
+  'black': $color-black,
+  'grey-darker': $color-grey-darker,
+  'grey-dark': $color-grey-dark,
+  'grey': $color-grey,
+  'grey-light': $color-grey-light,
+  'grey-lighter': $color-grey-lighter,
+  'white': $color-white,
+}
+
+for $key, $value in $colors
+  .bg-{$key}
+    background-color $value
+  .bg-hover-{$key}:hover
+    background-color $value
+  .color-{$key}
+    color $value
+  .color-hover-{$key}:hover
+    color $value
+  .placeholder-{$key}::placeholder
+    color $value
+  .placeholder-hover-{$key}:hover::placeholder
+    color $value
+
+$text-align = start end left right center
+for $value in $text-align
+  $selector = 'text-%s' % $value
+  .{$selector}
+    text-align $value
+
+$text-decoration = none underline overline line-through
+for $value in $text-decoration
+  .text-decoration-{$value}
+    text-decoration $value
+  .text-decoration-hover-{$value}:hover
+    text-decoration $value
+
+$text-transform = capitalize uppercase lowercase
+for $value in $text-transform
+  .text-{$value}
+    text-transform $value
+
+$text-overflow = clip ellipsis
+for $value in $text-overflow
+  .text-{$value}
+    text-overflow $value
+
+$white-space = normal nowrap pre pre-wrap pre-line
+for $value in $white-space
+  .white-space-{$value}
+    white-space $value
+
+$word-wrap = normal break-word
+for $value in $word-wrap
+  .word-wrap-{$value}
+    word-wrap $value
+
+$word-break = normal break-all keep-all
+for $value in $word-break
+  .word-break-{$value}
+    word-break $value
+
+$line-height = 0 .25 .50 .75 1 1.25 1.50 1.75 2
+for $value in $line-height
+  $key = $value * 100
+  .line-height-{$key}
+    line-height $value
+
+$vertical-align = baseline sub super top text-top central middle bottom text-bottom
+for $value in $vertical-align
+  .vertical-{$value}
+    vertical-align $value
+
+$list-style = circle disc square decimal none
+for $value in $list-style
+  .list-style-{$value}
+    list-style $value
