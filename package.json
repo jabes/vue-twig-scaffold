@@ -1,6 +1,6 @@
 {
-  "name": "control-demo",
-  "description": "This is a description.",
+  "name": "vue-twig-scaffold",
+  "description": "This is a simple scaffold example built with Vue.js and the Twig template engine.",
   "author": {
     "name": "Justin Bull",
     "email": "bull.justin@gmail.com",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/invoke/polygon"
+    "url": "https://github.com/jabes/VueTwigScaffold"
   },
   "devDependencies": {
     "babel-core": "6.26.0",

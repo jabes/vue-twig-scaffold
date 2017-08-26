@@ -18,7 +18,7 @@ $twig->addFilter(new Twig_Filter('relative_timestamp', 'Utils::relative_timestam
 $template = $twig->load('page-home.twig');
 echo $template->render([
   'site' => [
-    'name' => 'Control Demo',
+    'name' => 'Vue Twig Scaffold',
     'url' => 'http://localhost:8000/',
   ],
 ]);

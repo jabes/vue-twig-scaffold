@@ -1,4 +1,6 @@
-# Control Vue App
+# Vue Twig Scaffold
+
+This is a simple scaffold example built with Vue.js and the Twig template engine.
 
 ### Requirements
 
@@ -10,7 +12,8 @@
 ```bash
 composer install
 npm install
-npm run gulp
+npm run gulp build
+npm run gulp favicon
 ```
 
 ### Start Server
