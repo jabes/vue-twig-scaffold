@@ -3,7 +3,11 @@
 require_once 'vendor/autoload.php';
 require_once 'inc/utils.php';
 
-$loader = new Twig_Loader_Filesystem('templates');
+$loader = new Twig_Loader_Filesystem([
+  'assets/dist',
+  'templates',
+]);
+
 $twig = new Twig_Environment($loader);
 
 $twig->addFunction(new Twig_Function('asset', 'Utils::get_asset_path'));

@@ -25,6 +25,7 @@ config.paths.dist = {
   scripts: config.paths.basedir + '/assets/dist/js',
   images: config.paths.basedir + '/assets/dist/img',
   fonts: config.paths.basedir + '/assets/dist/font',
+  favicons: config.paths.basedir + '/assets/dist/favicon',
 };
 
 config.files = {
@@ -105,10 +106,10 @@ config.plugins = {
     developerURL: pkg.author.url, // Your (or your developer's) URL.
     background: '#fff', // Background colour for flattened icons.
     theme_color: '#fff', // Theme color for browser chrome.
-    path: '/assets/dist/img/favicons', // Path for overriding default icons path.
+    path: '/assets/dist/favicon', // Path for overriding default icons path.
     display: 'standalone', // Android display: 'browser' or 'standalone'.
     orientation: 'any', // Android orientation: 'portrait' or 'landscape'.
-    start_url: '/?homescreen=1', // Android start application's URL.
+    start_url: '/', // Android start application's URL.
     version: pkg.version, // Your application's version number.
     logging: true, // Print logs to console?
     online: false, // Use RealFaviconGenerator to create favicons?
@@ -193,7 +194,7 @@ gulp.task('favicon', function () {
   return gulp.src(config.files.src.images.favicon)
     .pipe(plugins.favicons(config.plugins.favicons))
     .on("error", plugins.util.log)
-    .pipe(gulp.dest(config.paths.dist.images + '/favicons'));
+    .pipe(gulp.dest(config.paths.dist.favicons));
 });
 
 gulp.task('fonts', function () {
