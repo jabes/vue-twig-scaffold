@@ -1,9 +1,13 @@
 {
+  "ignore": [
+    "assets/dist/",
+    "node_modules/",
+    "vendor/"
+  ],
+  "plugins": [
+    "transform-runtime"
+  ],
   "presets": [
     "es2015"
-  ],
-  "ignore": [
-    "node_modules",
-    "vendor"
   ]
 }

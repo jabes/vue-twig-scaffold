@@ -78,9 +78,11 @@ config.plugins = {
     remove: true, // Remove outdated prefixes
   },
   babel: {
+    babelrc: true, // Specify whether or not to use .babelrc and .babelignore files
     code: true, // Enable code generation
     compact: false, // Do not include superfluous whitespace characters and line terminators
     comments: true, // Output comments in generated output
+    plugins: ['transform-runtime'], // List of plugins to load and use
     presets: ["es2015"], // List of presets to load and use
   },
   cssnano: {
