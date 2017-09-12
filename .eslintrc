@@ -10,5 +10,9 @@
   "rules": {
     "no-console": "off",
     "no-debugger": "off"
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
   }
 }
