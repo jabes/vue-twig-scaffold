@@ -3,6 +3,7 @@
 !.editorconfig
 !.eslintrc
 !.gitignore
+!.npmrc
 
 assets/dist/
 node_modules/

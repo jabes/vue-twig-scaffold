@@ -1,11 +1,29 @@
 'use strict';
 
-const fs = require('fs');
 const del = require('del');
 const gulp = require('gulp');
 const runSequence = require('run-sequence');
-const plugins = require('gulp-load-plugins')();
 const pkg = require('./package.json');
+
+const plugins = {
+  autoprefixer: require('gulp-autoprefixer'),
+  babel: require('gulp-babel'),
+  concat: require('gulp-concat'),
+  cssnano: require('gulp-cssnano'),
+  eslint: require('gulp-eslint'),
+  favicons: require('gulp-favicons'),
+  groupCssMediaQueries: require('gulp-group-css-media-queries'),
+  imagemin: require('gulp-imagemin'),
+  livereload: require('gulp-livereload'),
+  newer: require('gulp-newer'),
+  plumber: require('gulp-plumber'),
+  rename: require('gulp-rename'),
+  sourcemaps: require('gulp-sourcemaps'),
+  stylus: require('gulp-stylus'),
+  uglify: require('gulp-uglify'),
+  util: require('gulp-util'),
+  watch: require('gulp-watch'),
+};
 
 const config = {};
 
@@ -13,19 +31,21 @@ config.paths = {};
 config.paths.basedir = global.process.env.INIT_CWD;
 config.paths.sourcemaps = './';
 
+config.paths.srcDir = `${config.paths.basedir}/assets/src`;
 config.paths.src = {
-  styles: config.paths.basedir + '/assets/src/styles',
-  scripts: config.paths.basedir + '/assets/src/scripts',
-  images: config.paths.basedir + '/assets/src/images',
-  fonts: config.paths.basedir + '/assets/src/fonts',
+  styles: `${config.paths.srcDir}/styles`,
+  scripts: `${config.paths.srcDir}/scripts`,
+  images: `${config.paths.srcDir}/images`,
+  fonts: `${config.paths.srcDir}/fonts`,
 };
 
+config.paths.distDir = `${config.paths.basedir}/assets/dist`;
 config.paths.dist = {
-  styles: config.paths.basedir + '/assets/dist/css',
-  scripts: config.paths.basedir + '/assets/dist/js',
-  images: config.paths.basedir + '/assets/dist/img',
-  fonts: config.paths.basedir + '/assets/dist/font',
-  favicons: config.paths.basedir + '/assets/dist/favicon',
+  styles: `${config.paths.distDir}/css`,
+  scripts: `${config.paths.distDir}/js`,
+  images: `${config.paths.distDir}/img`,
+  fonts: `${config.paths.distDir}/font`,
+  favicons: `${config.paths.distDir}/favicon`,
 };
 
 config.files = {
@@ -82,8 +102,6 @@ config.plugins = {
     code: true, // Enable code generation
     compact: false, // Do not include superfluous whitespace characters and line terminators
     comments: true, // Output comments in generated output
-    plugins: ['transform-runtime'], // List of plugins to load and use
-    presets: ["es2015"], // List of presets to load and use
   },
   cssnano: {
     discardComments: {
@@ -113,19 +131,19 @@ config.plugins = {
     orientation: 'any', // Android orientation: 'portrait' or 'landscape'.
     start_url: '/', // Android start application's URL.
     version: pkg.version, // Your application's version number.
-    logging: true, // Print logs to console?
+    logging: false, // Print logs to console?
     online: false, // Use RealFaviconGenerator to create favicons?
     preferOnline: false, // Use offline generation, if online generation has failed.
     html: "index.html",
     pipeHTML: true,
     icons: {
-      android: true, // Create Android homescreen icon.
-      appleIcon: true, // Create Apple touch icons.
-      appleStartup: true, // Create Apple startup images.
+      android: false, // Create Android homescreen icon.
+      appleIcon: false, // Create Apple touch icons.
+      appleStartup: false, // Create Apple startup images.
       coast: false, // Create Opera Coast icon.
       favicons: true, // Create regular favicons.
-      firefox: true, // Create Firefox OS icons.
-      windows: true, // Create Windows 8 tile icons.
+      firefox: false, // Create Firefox OS icons.
+      windows: false, // Create Windows 8 tile icons.
       yandex: false, // Create Yandex browser icon.
     }
   },
@@ -142,7 +160,7 @@ config.plugins = {
     quiet: false, // Disable console logging
   },
   plumber: {
-    errorHandler: function (err) {
+    'errorHandler': function (err) {
       const message = plugins.util.colors.red(err);
       plugins.util.beep();
       plugins.util.log(message);
@@ -175,14 +193,7 @@ config.plugins = {
 };
 
 gulp.task('clean', function () {
-  return del([
-    config.paths.dist.styles,
-    config.paths.dist.scripts,
-    config.paths.dist.images,
-    config.paths.dist.fonts,
-  ], {
-    force: true
-  });
+  return del([config.paths.distDir]);
 });
 
 gulp.task('images', function () {
@@ -267,7 +278,7 @@ gulp.task('watch', function () {
 });
 
 gulp.task('build', function (callback) {
-  runSequence('styles', 'scripts', 'images', 'fonts', callback);
+  runSequence('clean', 'styles', 'scripts', 'images', 'fonts', 'favicon', callback);
 });
 
 gulp.task('default', function (callback) {

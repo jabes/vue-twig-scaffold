@@ -1,4 +1,6 @@
-const vm = new Vue({
+'use strict';
+
+new Vue({
 
     el: '#app',
 
@@ -6,7 +8,7 @@ const vm = new Vue({
 
         reloadPage(params) {
             const loc = window.location;
-            const query = vm.serialize(params);
+            const query = this.serialize(params);
             window.location.href = loc.origin + loc.pathname + '?' + query;
         },
 
@@ -142,7 +144,6 @@ const vm = new Vue({
             if (this.animateScrollInstance) {
                 clearTimeout(this.animateScrollInstance);
                 delete this.animateScrollInstance;
-                this.waitForScrollFinish = false;
             }
         },
 
